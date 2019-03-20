@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management.Automation" Version="6.1.0" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <!-- <Exec Command="cp $(ProjectDir)format.ps1xml $(TargetDir)$(TargetName).format.ps1xml" /> -->
+      <Exec Command="cp $(ProjectDir)manifest.psd1 $(TargetDir)$(TargetName).psd1" />
+  </Target>
+</Project>
