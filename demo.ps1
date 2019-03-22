@@ -29,4 +29,4 @@ Feature 'Another Feature' {
     }
 }
 
-$Features #| ConvertTo-ALTestCodeunit 81000 'LookupValue UT Customer'
+$Features | ConvertTo-ALTestCodeunit 81000 'LookupValue UT Customer'

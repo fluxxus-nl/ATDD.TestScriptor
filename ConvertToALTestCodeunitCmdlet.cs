@@ -1,5 +1,6 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
@@ -26,7 +27,17 @@ namespace ATDD.TestScriptor
 
         protected override void EndProcessing()
         {
-            var features = scenarioCache.Select(s => s.Feature.ToString()).Distinct();
+            var features =
+                scenarioCache
+                    .Select(s => s.Feature.ToString())
+                    .Distinct();
+
+            var functionNames =
+                scenarioCache
+                    .SelectMany(s => s.Elements)
+                    .Select(e => SanitizeName(e.Value))
+                    .Distinct()
+                    .OrderBy(f => f);
 
             using (var stringWriter = new StringWriter())
             {
@@ -39,6 +50,7 @@ namespace ATDD.TestScriptor
                     writer.WriteLine("SubType = Test;");
                     writer.WriteLine();
                     scenarioCache.ForEach(s => WriteALTestFunction(s, writer));
+                    functionNames.ForEach(f => WriteDummyFunction(f, writer));
                     writer.Indent--;
                     writer.WriteLine("}");
                 }
@@ -47,25 +59,40 @@ namespace ATDD.TestScriptor
             }
         }
 
-        public void WriteALTestFunction(TestScenario scenario, IndentedTextWriter writer)
+        protected void WriteALTestFunction(TestScenario scenario, IndentedTextWriter writer)
         {
             writer.WriteLine("[Test]");
-            writer.WriteLine($"procedure {ALTestFunctionName(scenario)}()");
+            writer.WriteLine($"procedure {SanitizeName(scenario.Name)}()");
             writer.WriteLine($"// {scenario.Feature.ToString()}");
             writer.WriteLine("begin");
             writer.Indent++;
             writer.WriteLine($"// {scenario.ToString()}");
             writer.WriteLine();
-            writer.WriteLines(scenario.Elements.OfType<Given>().Select(g => $"// {g.ToString()}"));
-            writer.WriteLines(scenario.Elements.OfType<When>().Select(w => $"// {w.ToString()}"));
-            writer.WriteLines(scenario.Elements.OfType<Then>().Select(t => $"// {t.ToString()}"));
-            writer.WriteLines(scenario.Elements.OfType<Cleanup>().Select(c => $"// {c.ToString()}"));
+            writer.WriteLines(scenario.Elements.OfType<Given>().SelectMany(g => ElementLines(g)));
+            writer.WriteLines(scenario.Elements.OfType<When>().SelectMany(w => ElementLines(w)));
+            writer.WriteLines(scenario.Elements.OfType<Then>().SelectMany(t => ElementLines(t)));
+            writer.WriteLines(scenario.Elements.OfType<Cleanup>().SelectMany(c => ElementLines(c)));
             writer.Indent--;
             writer.WriteLine("end;");
             writer.WriteLine();
         }
 
-        public static string ALTestFunctionName(TestScenario scenario) =>
-            Regex.Replace(scenario.Name, @"\W", @"");
+        protected IEnumerable<string> ElementLines(TestScenarioElement element)
+        {
+            yield return $"// {element.ToString()}";
+            yield return $"{SanitizeName(element.Value)}();";
+            yield return "";
+        }
+
+        protected void WriteDummyFunction(string name, IndentedTextWriter writer)
+        {
+            writer.WriteLine($"local procedure {name}()");
+            writer.WriteLine("begin");
+            writer.WriteLine("end;");
+            writer.WriteLine();
+        }
+
+        protected static string SanitizeName(string name) =>
+            Regex.Replace(CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name), @"\W", @"");
     }
 }

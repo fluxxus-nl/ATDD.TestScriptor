@@ -6,5 +6,7 @@ namespace ATDD.TestScriptor
         public string ExpectedResult { get; }
 
         public override string ToString() => $"[THEN] {ExpectedResult}";
+
+        public override string Value => ExpectedResult;
     }
 }

@@ -7,5 +7,7 @@ namespace ATDD.TestScriptor
         public string Target { get; }
 
         public override string ToString() => $"[CLEANUP] {Target}";
+
+        public override string Value => Target;
     }
 }

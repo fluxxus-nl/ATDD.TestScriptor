@@ -6,5 +6,7 @@ namespace ATDD.TestScriptor
         public string Situation { get; }
 
         public override string ToString() => $"[GIVEN] {Situation}";
+
+        public override string Value => Situation;
     }
 }
