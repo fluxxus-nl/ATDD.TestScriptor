@@ -44,6 +44,7 @@ namespace ATDD.TestScriptor
             writer.WriteLines(scenario.Elements.OfType<Given>().Select(g => $"// [GIVEN] {g.Situation}"));
             writer.WriteLines(scenario.Elements.OfType<When>().Select(w => $"// [WHEN] {w.Condition}"));
             writer.WriteLines(scenario.Elements.OfType<Then>().Select(t => $"// [THEN] {t.ExpectedResult}"));
+            writer.WriteLines(scenario.Elements.OfType<Cleanup>().Select(c => $"// [CLEANUP] {c.Target}"));
             writer.Indent--;
             writer.WriteLine("end;");
             writer.WriteLine();
