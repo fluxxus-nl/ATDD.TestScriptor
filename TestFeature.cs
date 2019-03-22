@@ -8,11 +8,13 @@ namespace ATDD.TestScriptor
         public TestFeature(string name, params TestScenario[] scenarios)
         {
             Name = name;
+            Scenarios = new TestScenarios(this);
+
             Scenarios.AddRange(scenarios);
         }
 
         public string Name { get; }
-        public Collection<TestScenario> Scenarios { get; } = new Collection<TestScenario>();
+        public TestScenarios Scenarios { get; }
 
         public override string ToString() => $"[FEATURE] {Name}";
     }
