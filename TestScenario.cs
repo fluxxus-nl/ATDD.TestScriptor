@@ -13,5 +13,7 @@ namespace ATDD.TestScriptor
         public int ID { get; set; }
         public string Name { get; set; }
         public Collection<TestScenarioElement> Elements { get; } = new Collection<TestScenarioElement>();
+
+        public override string ToString() => $"[SCENARIO] {ID} {Name}";
     }
 }

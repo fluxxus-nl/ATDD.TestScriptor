@@ -13,5 +13,7 @@ namespace ATDD.TestScriptor
 
         public string Name { get; }
         public Collection<TestScenario> Scenarios { get; } = new Collection<TestScenario>();
+
+        public override string ToString() => $"[FEATURE] {Name}";
     }
 }

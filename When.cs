@@ -4,5 +4,7 @@ namespace ATDD.TestScriptor
     {
         public When(string condition) => Condition = condition;
         public string Condition { get; }
+
+        public override string ToString() => $"[WHEN] {Condition}";
     }
 }
