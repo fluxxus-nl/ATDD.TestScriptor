@@ -20,6 +20,12 @@ namespace ATDD.TestScriptor
             return items;
         }
 
+        public static void WriteLineIf(this IndentedTextWriter writer, bool condition, string line)
+        {
+            if (condition)
+                writer.WriteLine(line);
+        }
+
         public static void WriteLines(this IndentedTextWriter writer, IEnumerable<string> lines) =>
             lines.ForEach(l => writer.WriteLine(l));
     }

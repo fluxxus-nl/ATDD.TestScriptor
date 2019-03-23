@@ -19,6 +19,9 @@ namespace ATDD.TestScriptor
         [Parameter(Mandatory = true, Position = 1)]
         public string CodeunitName { get; set; }
 
+        [Parameter()]
+        public SwitchParameter InitializeFunction { get; set; }
+
         [Parameter(ValueFromPipeline = true)]
         [ValidateNotNull()]
         public TestFeature[] Feature { get; set; } = new TestFeature[] { };
@@ -50,6 +53,7 @@ namespace ATDD.TestScriptor
                     writer.WriteLine("SubType = Test;");
                     writer.WriteLine();
                     scenarioCache.ForEach(s => WriteALTestFunction(s, writer));
+                    WriteInitializeFunction(writer);
                     functionNames.ForEach(f => WriteDummyFunction(f, writer));
                     writer.Indent--;
                     writer.WriteLine("}");
@@ -67,6 +71,7 @@ namespace ATDD.TestScriptor
             writer.WriteLine("begin");
             writer.Indent++;
             writer.WriteLine($"// {scenario.ToString()}");
+            writer.WriteLineIf(InitializeFunction, "Initialize();");
             writer.WriteLine();
             writer.WriteLines(scenario.Elements.OfType<Given>().SelectMany(g => ElementLines(g)));
             writer.WriteLines(scenario.Elements.OfType<When>().SelectMany(w => ElementLines(w)));
@@ -82,6 +87,38 @@ namespace ATDD.TestScriptor
             yield return $"// {element.ToString()}";
             yield return $"{SanitizeName(element.Value)}();";
             yield return "";
+        }
+
+        protected void WriteInitializeFunction(IndentedTextWriter writer)
+        {
+            if (InitializeFunction)
+            {
+                writer.WriteLine("var");
+                writer.Indent++;
+                writer.WriteLine("IsInitialized: Boolean;");
+                writer.Indent--;
+                writer.WriteLine();
+
+                writer.WriteLine("local procedure Initialize()");
+                writer.WriteLine("begin");
+                writer.Indent++;
+                writer.WriteLine($"LibraryTestInitialize.OnTestInitialize(Codeunit::\"{CodeunitName}\");");
+                writer.WriteLine();
+                writer.WriteLine("if IsInitialized then");
+                writer.Indent++;
+                writer.WriteLine("exit;");
+                writer.Indent--;
+                writer.WriteLine();
+                writer.WriteLine($"LibraryTestInitialize.OnBeforeTestSuiteInitialize(Codeunit::\"{CodeunitName}\");");
+                writer.WriteLine();
+                writer.WriteLine("IsInitialized := true;");
+                writer.WriteLine("Commit();");
+                writer.WriteLine();
+                writer.WriteLine($"LibraryTestInitialize.OnAfterTestSuiteInitialize(Codeunit::\"{CodeunitName}\");");
+                writer.Indent--;
+                writer.WriteLine("end;");
+                writer.WriteLine();
+            }
         }
 
         protected void WriteDummyFunction(string name, IndentedTextWriter writer)
