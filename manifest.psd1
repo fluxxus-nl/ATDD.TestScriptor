@@ -24,13 +24,13 @@
     Author            = 'Jan Hoek'
 
     # Company or vendor of this module
-    CompanyName       = 'uncommonsense.nl'
+    CompanyName       = 'fluxxus.nl'
 
     # Copyright statement for this module
-    Copyright         = 'Copyright (c) 2019 Jan Hoek'
+    Copyright         = 'Copyright (c) 2019 fluxxus.nl'
 
     # Description of the functionality provided by this module
-    # Description = ''
+    Description       = 'Acceptance Test-Driven Development test scriptor'
 
     # Minimum version of the PowerShell engine required by this module
     # PowerShellVersion = ''
