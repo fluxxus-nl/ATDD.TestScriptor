@@ -2,17 +2,17 @@ using System.Management.Automation;
 
 namespace ATDD.TestScriptor
 {
-    [Cmdlet(VerbsCommon.New, "Cleanup")]
-    [Alias("Cleanup")]
-    public class NewCleanupCmdlet : Cmdlet
+    [Cmdlet(VerbsCommon.New, "ATDDWhen")]
+    [Alias("When")]
+    public class NewATDDWhenCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]
-        public string Target { get; set; }
+        public string Condition { get; set; }
 
         protected override void EndProcessing()
         {
             WriteObject(
-                new Cleanup(Target)
+                new When(Condition)
             );
         }
     }

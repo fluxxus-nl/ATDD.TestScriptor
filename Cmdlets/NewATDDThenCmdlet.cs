@@ -2,9 +2,9 @@ using System.Management.Automation;
 
 namespace ATDD.TestScriptor
 {
-    [Cmdlet(VerbsCommon.New, "Then")]
+    [Cmdlet(VerbsCommon.New, "ATDDThen")]
     [Alias("Then")]
-    public class NewThenCmdlet : Cmdlet
+    public class NewATDDThenCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]
         public string ExpectedResult { get; set; }

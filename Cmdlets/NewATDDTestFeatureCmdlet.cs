@@ -3,9 +3,9 @@ using System.Management.Automation;
 
 namespace ATDD.TestScriptor
 {
-    [Cmdlet(VerbsCommon.New, "TestFeature")]
+    [Cmdlet(VerbsCommon.New, "ATDDTestFeature")]
     [Alias("Feature")]
-    public class NewTestFeatureCmdlet : Cmdlet
+    public class NewATDDTestFeatureCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]
         public string Name { get; set; }
