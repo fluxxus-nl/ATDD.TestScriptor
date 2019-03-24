@@ -16,7 +16,7 @@ Type either of the following in a PowerShell prompt:
 ```powershell
 Install-Module ATDD.TestScriptor 
 ```
-- to install for current user; no admin privileges required:
+- to install for current user only; no admin privileges required:
 ```powershell
 Install-Module ATDD.TestScriptor -Scope CurrentUser 
 ```
