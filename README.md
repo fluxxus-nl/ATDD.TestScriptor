@@ -9,7 +9,19 @@ The ATDD pattern is defined by so called tags:
 *	WHEN: defines the action under test; each test case should have only one WHEN tag
 *	THEN: defines the result of the action, or more specifically the verification of the result; if multiple results apply, multiple THEN tags will be needed
 
-## Installation/usage instructions (beta phase)
+## Installation instructions
+Type either of the following in a PowerShell prompt:
+
+- to install for all users; requires prompt with admin privileges: 
+```powershell
+Install-Module ATDD.TestScriptor 
+```
+- to install for current user; no admin privileges required:
+```powershell
+Install-Module ATDD.TestScriptor -Scope CurrentUser 
+```
+
+## Build/usage instructions (beta phase)
 
 - Clone this repository to a folder on your machine;
 - Only on Windows: open the .csproj file and replace the `cp` command with `copy` in the `<Exec>` elements;
