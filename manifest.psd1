@@ -12,7 +12,7 @@
     RootModule        = 'ATDD.TestScriptor.dll'
 
     # Version number of this module.
-    ModuleVersion     = '0.0.1'
+    ModuleVersion     = '0.0.3'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -72,8 +72,8 @@
     FunctionsToExport = '*'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-    CmdletsToExport   = 'New-Given', 'New-TestFeature', 'New-TestScenario', 'New-Then',
-    'New-When', 'ConvertTo-ALTestCodeunit', 'New-Cleanup'
+    CmdletsToExport   = 'New-ATDDGiven', 'New-ATDDTestFeature', 'New-ATDDTestScenario', 'New-ATDDThen',
+    'New-ATDDWhen', 'ConvertTo-ALTestCodeunit', 'New-ATDDCleanup'
 
     # Variables to export from this module
     VariablesToExport = '*'
@@ -99,13 +99,13 @@
             # Tags = @()
 
             # A URL to the license for this module.
-            # LicenseUri = ''
+            LicenseUri = 'https://github.com/fluxxus-nl/ATDD.TestScriptor/blob/master/LICENSE'
 
             # A URL to the main website for this project.
-            # ProjectUri = ''
+            ProjectUri = 'https://github.com/fluxxus-nl/ATDD.TestScriptor'
 
             # A URL to an icon representing this module.
-            # IconUri = ''
+            IconUri    = 'https://github.com/fluxxus-nl.png'
 
             # ReleaseNotes of this module
             # ReleaseNotes = ''
