@@ -100,6 +100,10 @@ namespace ATDD.TestScriptor
                 writer.WriteLine();
 
                 writer.WriteLine("local procedure Initialize()");
+                writer.WriteLine("var");
+                writer.Indent++;
+                writer.WriteLine("LibraryTestInitialize: Codeunit \"Library - Test Initialize\";");
+                writer.Indent--;
                 writer.WriteLine("begin");
                 writer.Indent++;
                 writer.WriteLine($"LibraryTestInitialize.OnTestInitialize(Codeunit::\"{CodeunitName}\");");
