@@ -1,4 +1,4 @@
-Import-Module -Name "$PSScriptRoot/bin/Debug/netstandard2.0/ATDD.TestScriptor.psd1" -Force
+Import-Module -Name "$PSScriptRoot/output/ATDD.TestScriptor/ATDD.TestScriptor.psd1" -Force
 
 $Features = @()
 
