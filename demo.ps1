@@ -1,22 +1,28 @@
-Import-Module -Name "$PSScriptRoot/output/ATDD.TestScriptor/ATDD.TestScriptor.psd1" -Force
+Install-Module ATDD.TestScriptor -Force
 
 $Features = @()
 
 $Features +=
-Feature 'My Feature' {
-    Scenario 1 'My First Scenario' {
-        Given 'First Given'
-        Given 'Second Given'
-        When 'This happens'
-        Then 'This should happen'
-        Then 'This should also happen'
+Feature 'LookupValue UT Customer' {
+    Scenario 1 'Check that label can be assigned to customer' {
+	    Given	'A label'
+	    Given	'A customer'
+	    When	'Assign label to customer'
+	    Then	'Customer has label field populated'
     }
 
-    Scenario 2 'My Second Scenario' {
-        Given 'First Given'
-        When 'Something happens'
-        Then 'Something else should happen'
-        Cleanup 'Delete all records'
+    Scenario 2 'Check that label field table relation is validated for non-existing label on customer' {
+	    Given	'A non-existing label value'
+	    Given	'A customer record variable'
+	    When	'Assign non-existing label to customer'
+	    Then	'Non existing label error was thrown'
+    }
+
+    Scenario 3 'Check that label can be assigned on customer card' {
+	    Given	'A label'
+	    Given	'A customer card'
+	    When	'Assign label to customer card'
+	    Then	'Customer has label field populated'
     }
 }
 
