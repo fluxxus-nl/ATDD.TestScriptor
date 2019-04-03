@@ -16,6 +16,6 @@ namespace ATDD.TestScriptor
         public TestFeature Feature { get; internal set; }
         public Collection<TestScenarioElement> Elements { get; } = new Collection<TestScenarioElement>();
 
-        public override string ToString() => $"[SCENARIO] {ID} {Name}";
+        public override string ToString() => $"[SCENARIO #{ID:0000}] {Name}";
     }
 }
