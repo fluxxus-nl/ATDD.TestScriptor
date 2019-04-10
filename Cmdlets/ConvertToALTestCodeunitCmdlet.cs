@@ -1,3 +1,4 @@
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Globalization;
@@ -26,19 +27,36 @@ namespace ATDD.TestScriptor
         [ValidateNotNull()]
         public TestFeature[] Feature { get; set; } = new TestFeature[] { };
 
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        public string GivenFunctionName { get; set; } = "{0}";
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        public string WhenFunctionName { get; set; } = "{0}";
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        public string ThenFunctionName { get; set; } = "{0}";
+
         protected override void ProcessRecord() => scenarioCache.AddRange(Feature.SelectMany(f => f.Scenarios));
 
         protected override void EndProcessing()
         {
-            var features =
+            var uniqueFeatureNames =
                 scenarioCache
                     .Select(s => s.Feature.ToString())
                     .Distinct();
 
-            var functionNames =
+            var elementFunctionNames =
                 scenarioCache
                     .SelectMany(s => s.Elements)
-                    .Select(e => SanitizeName(e.Value))
+                    .Select(e => new { Element = e, FunctionName = GetElementFunctionName(e) })
+                    .ToDictionary(o => o.Element, o => o.FunctionName);
+
+            var uniqueFunctionNames =
+                elementFunctionNames
+                    .Values
                     .Distinct()
                     .OrderBy(f => f);
 
@@ -49,12 +67,12 @@ namespace ATDD.TestScriptor
                     writer.WriteLine($"codeunit {CodeunitID} \"{CodeunitName}\"");
                     writer.WriteLine("{");
                     writer.Indent++;
-                    writer.WriteLines(features.Select(f => $"// {f}"));
+                    writer.WriteLines(uniqueFeatureNames.Select(f => $"// {f}"));
                     writer.WriteLine("SubType = Test;");
                     writer.WriteLine();
                     scenarioCache.ForEach(s => WriteALTestFunction(s, writer));
                     WriteInitializeFunction(writer);
-                    functionNames.ForEach(f => WriteDummyFunction(f, writer));
+                    uniqueFunctionNames.ForEach(f => WriteDummyFunction(f, writer));
                     writer.Indent--;
                     writer.WriteLine("}");
                 }
@@ -131,6 +149,29 @@ namespace ATDD.TestScriptor
             writer.WriteLine("begin");
             writer.WriteLine("end;");
             writer.WriteLine();
+        }
+
+        protected string GetElementFunctionName(TestScenarioElement element)
+        {
+            switch (element)
+            {
+                case Given given: return FormatElement(element, GivenFunctionName);
+                case When @when: return FormatElement(element, WhenFunctionName);
+                case Then then: return FormatElement(element, ThenFunctionName);
+                default: return SanitizeName(element.Value);
+            }
+        }
+
+        protected string FormatElement(TestScenarioElement element, string format)
+        {
+            try
+            {
+                return SanitizeName(string.Format(format, element.Value));
+            }
+            catch (FormatException e)
+            {
+                throw new FormatException($"Function name format '{format}' should not contain placeholders other than '{{0}}'", e);
+            }
         }
 
         protected static string SanitizeName(string name) =>
