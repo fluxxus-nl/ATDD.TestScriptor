@@ -74,7 +74,7 @@ namespace ATDD.TestScriptor
                     writer.WriteLines(uniqueFeatureNames.Select(f => $"// {f}"));
                     writer.WriteLine("SubType = Test;");
                     writer.WriteLine();
-                    scenarioCache.ForEach(s => WriteALTestFunction(s, writer));
+                    scenarioCache.ForEach(s => WriteALTestFunction(s, elementFunctionNames, writer));
                     WriteInitializeFunction(writer);
                     uniqueFunctionNames.ForEach(f => WriteDummyFunction(f, writer));
                     writer.Indent--;
@@ -85,7 +85,7 @@ namespace ATDD.TestScriptor
             }
         }
 
-        protected void WriteALTestFunction(TestScenario scenario, IndentedTextWriter writer)
+        protected void WriteALTestFunction(TestScenario scenario, Dictionary<TestScenarioElement, string> elementFunctionNames, IndentedTextWriter writer)
         {
             writer.WriteLine("[Test]");
             writer.WriteLine($"procedure {SanitizeName(scenario.Name)}()");
@@ -95,19 +95,19 @@ namespace ATDD.TestScriptor
             writer.WriteLine($"// {scenario.ToString()}");
             writer.WriteLineIf(InitializeFunction, "Initialize();");
             writer.WriteLine();
-            writer.WriteLines(scenario.Elements.OfType<Given>().SelectMany(g => ElementLines(g)));
-            writer.WriteLines(scenario.Elements.OfType<When>().SelectMany(w => ElementLines(w)));
-            writer.WriteLines(scenario.Elements.OfType<Then>().SelectMany(t => ElementLines(t)));
-            writer.WriteLines(scenario.Elements.OfType<Cleanup>().SelectMany(c => ElementLines(c)));
+            writer.WriteLines(scenario.Elements.OfType<Given>().SelectMany(g => ElementLines(g, elementFunctionNames)));
+            writer.WriteLines(scenario.Elements.OfType<When>().SelectMany(w => ElementLines(w, elementFunctionNames)));
+            writer.WriteLines(scenario.Elements.OfType<Then>().SelectMany(t => ElementLines(t, elementFunctionNames)));
+            writer.WriteLines(scenario.Elements.OfType<Cleanup>().SelectMany(c => ElementLines(c, elementFunctionNames)));
             writer.Indent--;
             writer.WriteLine("end;");
             writer.WriteLine();
         }
 
-        protected IEnumerable<string> ElementLines(TestScenarioElement element)
+        protected IEnumerable<string> ElementLines(TestScenarioElement element, Dictionary<TestScenarioElement, string> elementFunctionNames)
         {
             yield return $"// {element.ToString()}";
-            yield return $"{SanitizeName(element.Value)}();";
+            yield return $"{elementFunctionNames[element]}();";
             yield return "";
         }
 
