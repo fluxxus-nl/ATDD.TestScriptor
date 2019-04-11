@@ -12,7 +12,8 @@
                 "isDefault": true
             },
             "presentation": {
-                "reveal": "always"
+                "reveal": "always",
+                "clear": true
             },
             "problemMatcher": "$msCompile"
         },
@@ -30,6 +31,7 @@
             },
             "presentation": {
                 "reveal": "always",
+                "clear": true
             }
         }
     ]
