@@ -60,6 +60,10 @@ namespace ATDD.TestScriptor
                     .Distinct()
                     .OrderBy(f => f);
 
+            WarnIfPlaceHolderMissing(GivenFunctionName);
+            WarnIfPlaceHolderMissing(WhenFunctionName);
+            WarnIfPlaceHolderMissing(ThenFunctionName);
+
             using (var stringWriter = new StringWriter())
             {
                 using (var writer = new IndentedTextWriter(stringWriter))
@@ -172,6 +176,12 @@ namespace ATDD.TestScriptor
             {
                 throw new FormatException($"Function name format '{format}' should not contain placeholders other than '{{0}}'", e);
             }
+        }
+
+        protected void WarnIfPlaceHolderMissing(string format)
+        {
+            if (!format.Contains("{0}"))
+                WriteWarning($"Function name format '{format}' does not contain placeholder '{{0}}'");
         }
 
         protected static string SanitizeName(string name) =>
