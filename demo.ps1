@@ -41,6 +41,5 @@ $Features | `
     -CodeunitID 81000 `
     -CodeunitName 'LookupValue UT Customer' `
     -InitializeFunction `
-    -GivenFunctionName "Make {0}" `
-    -WhenFunctionName 'Blaat {0}' `
-    -ThenFunctionName "Test {0}"
+    -GivenFunctionName "Create {0}" `
+    -ThenFunctionName "Verify {0}"
