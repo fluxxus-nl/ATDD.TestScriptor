@@ -19,7 +19,7 @@ ConvertTo-ALTestCodeunit [-CodeunitID] <Int32> [-CodeunitName] <String> [-Initia
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Converts one or more test features to an AL codeunit. Each **scenario** contained in a feature will result in 1 test function. Each **given**, **when** and **then** tag in a scenario will result in a helper function placeholder to be completed by manual AL coding.
 
 ## EXAMPLES
 
@@ -28,12 +28,12 @@ ConvertTo-ALTestCodeunit [-CodeunitID] <Int32> [-CodeunitName] <String> [-Initia
 PS C:\> {{ Add example code here }}
 ```
 
-{{ Add example description here }}
+**Jan** kun jij een voorbeeld toevoegen?
 
 ## PARAMETERS
 
 ### -CodeunitID
-{{Fill CodeunitID Description}}
+ID of the new test codeunit
 
 ```yaml
 Type: Int32
@@ -48,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -CodeunitName
-{{Fill CodeunitName Description}}
+Name of the new test codeunit
 
 ```yaml
 Type: String
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -Feature
-{{Fill Feature Description}}
+**Jan** wat doet deze parameter?
 
 ```yaml
 Type: TestFeature[]
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -InitializeFunction
-{{Fill InitializeFunction Description}}
+Include this switch if you want to have an Initialize function setup for the test codeunit
 
 ```yaml
 Type: SwitchParameter
