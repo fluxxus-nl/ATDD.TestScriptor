@@ -1,36 +1,20 @@
 # ATDD.TestScriptor
 ## about_ATDD.TestScriptor
 
-```
-ABOUT TOPIC NOTE:
-The first header of the about topic should be the topic name.
-The second header contains the lookup name used by the help system.
-
-IE:
-# Some Help Topic Name
-## SomeHelpTopicFileName
-
-This will be transformed into the text file
-as `about_SomeHelpTopicFileName`.
-Do not include file extensions.
-The second header should have no spaces.
-```
-
 # SHORT DESCRIPTION
-{{ Short Description Placeholder }}
-
-```
-ABOUT TOPIC NOTE:
-About topics can be no longer than 80 characters wide when rendered to text.
-Any topics greater than 80 characters will be automatically wrapped.
-The generated about topic will be encoded UTF-8.
-```
+Define with ATDD.TestScriptor ATDD test scenarios and convert it into AL code
 
 # LONG DESCRIPTION
-{{ Long Description Placeholder }}
+The Acceptance Test-Driven Development test scriptor allows the user to define in a managed matter ATDD test scenarios and convert it into a code structure to facilate fast test code development. At this moment this conversion is only implemented for .al
 
 ## Optional Subtopics
-{{ Optional Subtopic Placeholder }}
+An ATDD pattern is defined by so called tags:
+-    FEATURE: defines what feature(s) the test or collection of test cases is testing
+-    SCENARIO: defines for a single test the scenario being teste
+-    GIVEN: defines what data setup is needed; a test case can have multiple GIVEN tags when data setup is more complex
+-    WHEN: defines the action under test; each test case should have only one WHEN tag
+-    THEN: defines the result of the action, or more specifically the verification of the result; if multiple results apply, multiple THEN tags will be needed
+
 
 # EXAMPLES
 {{ Code or descriptive examples of how to leverage the functions described. }}
