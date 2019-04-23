@@ -18,6 +18,16 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "help",
+            "command": "pwsh",
+            "args": [
+                "-Command",
+                "New-ExternalHelp -Path ./docs/ -OutputPath ./output/ATDD.TestScriptor/en-us -ShowProgress -Force"
+            ],
+            "type": "shell",
+            "problemMatcher": []
+        },
+        {
             "label": "test",
             "command": "pwsh",
             "type": "shell",
