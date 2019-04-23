@@ -25,10 +25,9 @@ Converts one or more test features to an AL codeunit. Each **scenario** containe
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Feature 'My Feature' { Scenario 1 'My Scenario' { Given Foo; When Baz; Then Bar } } | ConvertTo-ALTestCodeunit -CodeunitID 81000 -CodeunitName 'My Test Codeunit'
+codeunit 81000 "My Test Codeunit"
 ```
-
-**Jan** kun jij een voorbeeld toevoegen?
 
 ## PARAMETERS
 
@@ -63,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Feature
-**Jan** wat doet deze parameter?
+The feature(s) whose scenarios must be included in the test codeunit
 
 ```yaml
 Type: TestFeature[]
