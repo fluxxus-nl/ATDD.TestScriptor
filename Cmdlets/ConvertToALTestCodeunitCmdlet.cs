@@ -185,6 +185,10 @@ namespace ATDD.TestScriptor
         }
 
         protected static string SanitizeName(string name) =>
-            Regex.Replace(CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name), @"\W", @"");
+            Regex
+                .Split(name, @"\W", RegexOptions.CultureInvariant)
+                .Where(s => !string.IsNullOrEmpty(s))
+                .Select(s => Regex.Replace(s, "^.", m => m.Value.ToUpperInvariant()))
+                .Join("");
     }
 }

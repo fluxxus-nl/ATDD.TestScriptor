@@ -20,6 +20,9 @@ namespace ATDD.TestScriptor
             return items;
         }
 
+        public static string Join(this IEnumerable<string> items, string separator) =>
+            string.Join(separator, items);
+
         public static void WriteLineIf(this IndentedTextWriter writer, bool condition, string line)
         {
             if (condition)
