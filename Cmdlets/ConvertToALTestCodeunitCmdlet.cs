@@ -39,6 +39,10 @@ namespace ATDD.TestScriptor
         [ValidateNotNullOrEmpty()]
         public string ThenFunctionName { get; set; } = "{0}";
 
+        [Parameter()]
+        [ValidateNotNull()]
+        public string BannerFormat { get; set; } = "// Generated on {0} at {1} by {2}";
+
         protected override void ProcessRecord() => scenarioCache.AddRange(Feature.SelectMany(f => f.Scenarios));
 
         protected override void EndProcessing()
@@ -71,6 +75,7 @@ namespace ATDD.TestScriptor
                     writer.WriteLine($"codeunit {CodeunitID} \"{CodeunitName}\"");
                     writer.WriteLine("{");
                     writer.Indent++;
+                    WriteBanner(writer);
                     writer.WriteLines(uniqueFeatureNames.Select(f => $"// {f}"));
                     writer.WriteLine("SubType = Test;");
                     writer.WriteLine();
@@ -109,6 +114,23 @@ namespace ATDD.TestScriptor
             yield return $"// {element.ToString()}";
             yield return $"{elementFunctionNames[element]}();";
             yield return "";
+        }
+
+        protected void WriteBanner(IndentedTextWriter writer)
+        {
+            var now = DateTime.Now;
+            var banner =
+                string.Format(
+                    BannerFormat,
+                    now.ToShortDateString(),
+                    now.ToShortTimeString(),
+                    Environment.UserName);
+
+            if (!string.IsNullOrEmpty(banner))
+            {
+                writer.WriteLine(banner);
+                writer.WriteLine();
+            }
         }
 
         protected void WriteInitializeFunction(IndentedTextWriter writer)
