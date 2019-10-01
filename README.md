@@ -31,4 +31,6 @@ Note that you may be asked for confirmation if you didn't previously mark the Po
 - Type `dotnet build` and press Enter;
 - Type `./demo.ps1` to view sample output.
 
+## Demo
+
 ![ATDD.TestScriptor Demo](demo/ATDD.TestScriptor_Demo.gif)
