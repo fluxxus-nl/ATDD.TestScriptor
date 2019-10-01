@@ -30,3 +30,5 @@ Note that you may be asked for confirmation if you didn't previously mark the Po
 - Open a PowerShell prompt and navigate to your local repository folder;
 - Type `dotnet build` and press Enter;
 - Type `./demo.ps1` to view sample output.
+
+![ATDD.TestScriptor Demo](demo/ATDD.TestScriptor_Demo.gif)
