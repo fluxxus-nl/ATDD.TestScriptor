@@ -34,3 +34,5 @@ Note that you may be asked for confirmation if you didn't previously mark the Po
 ## Demo
 
 ![ATDD.TestScriptor Demo](demo/ATDD.TestScriptor_Demo.gif)
+
+Need a more comprehensive demo? Have a look at this Areopa webinar were this module was used: https://www.youtube.com/watch?v=ma48oWYWCvw&t=82s
