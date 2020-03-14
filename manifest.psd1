@@ -12,7 +12,7 @@
     RootModule        = 'ATDD.TestScriptor.dll'
 
     # Version number of this module.
-    ModuleVersion     = '0.0.7'
+    ModuleVersion     = '0.1.0'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -27,7 +27,7 @@
     CompanyName       = 'fluxxus.nl'
 
     # Copyright statement for this module
-    Copyright         = 'Copyright (c) 2019 fluxxus.nl'
+    Copyright         = 'Copyright (c) 2020 fluxxus.nl'
 
     # Description of the functionality provided by this module
     Description       = 'Acceptance Test-Driven Development test scriptor'
