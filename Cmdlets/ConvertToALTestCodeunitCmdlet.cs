@@ -76,8 +76,14 @@ namespace ATDD.TestScriptor
                     writer.WriteLine("{");
                     writer.Indent++;
                     WriteBanner(writer);
-                    writer.WriteLines(uniqueFeatureNames.Select(f => $"// {f}"));
                     writer.WriteLine("SubType = Test;");
+                    writer.WriteLine();
+                    writer.WriteLine("trigger OnRun()");
+                    writer.WriteLine("begin");
+                    writer.Indent++;
+                    writer.WriteLines(uniqueFeatureNames.Select(f => $"// {f}"));
+                    writer.Indent--;
+                    writer.WriteLine("end;");
                     writer.WriteLine();
                     scenarioCache.ForEach(s => WriteALTestFunction(s, elementFunctionNames, writer));
                     WriteInitializeFunction(writer);

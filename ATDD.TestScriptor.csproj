@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-      <Exec Command="cp $(ProjectDir)format.ps1xml $(TargetDir)$(TargetName).format.ps1xml" />
-      <Exec Command="cp $(ProjectDir)manifest.psd1 $(TargetDir)$(TargetName).psd1" />
+      <Exec Command="cp &quot;$(ProjectDir)format.ps1xml&quot; &quot;$(TargetDir)$(TargetName).format.ps1xml&quot;" />
+      <Exec Command="cp &quot;$(ProjectDir)manifest.psd1&quot; &quot;$(TargetDir)$(TargetName).psd1&quot;" />
   </Target>
 </Project>
