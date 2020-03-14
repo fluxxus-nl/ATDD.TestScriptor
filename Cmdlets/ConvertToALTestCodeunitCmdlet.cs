@@ -40,6 +40,9 @@ namespace ATDD.TestScriptor
         public string ThenFunctionName { get; set; } = "{0}";
 
         [Parameter()]
+        public SwitchParameter DoNotAddErrorToHelperFunctions { get; set; }
+
+        [Parameter()]
         [ValidateNotNull()]
         public string BannerFormat { get; set; } = "// Generated on {0} at {1} by {2}";
 
@@ -179,6 +182,12 @@ namespace ATDD.TestScriptor
         {
             writer.WriteLine($"local procedure {name}()");
             writer.WriteLine("begin");
+            if (!DoNotAddErrorToHelperFunctions)
+            {
+                writer.Indent++;
+                writer.WriteLine($"Error('{name} not implemented.')");
+                writer.Indent--;
+            }
             writer.WriteLine("end;");
             writer.WriteLine();
         }
