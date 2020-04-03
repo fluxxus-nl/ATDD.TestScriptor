@@ -21,7 +21,7 @@ Install-Module ATDD.TestScriptor
 Install-Module ATDD.TestScriptor -Scope CurrentUser 
 ```
 
-Note that you may be asked for confirmation if you didn't previously mark the PowerShell Gallery repository as a trusted module source.
+Note that you may be asked for confirmation if you haven't previously marked the PowerShell Gallery repository as a trusted PowerShell module source.
 
 ## Build/usage instructions (beta phase)
 
