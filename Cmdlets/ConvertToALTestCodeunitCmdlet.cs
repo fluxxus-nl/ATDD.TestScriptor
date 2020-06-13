@@ -79,7 +79,7 @@ namespace ATDD.TestScriptor
                     writer.WriteLine("{");
                     writer.Indent++;
                     WriteBanner(writer);
-                    writer.WriteLine("SubType = Test;");
+                    writer.WriteLine("Subtype = Test;");
                     writer.WriteLine();
                     writer.WriteLine("trigger OnRun()");
                     writer.WriteLine("begin");
