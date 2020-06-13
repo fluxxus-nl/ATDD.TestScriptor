@@ -1,5 +1,5 @@
 # ATDD.TestScriptor
-The Acceptance Test-Driven Development test scriptor allows the user to define in a managed matter ATDD test scenarios and convert it into a code structure to facilate fast test code development. At this moment this conversion is only implemented for .al
+The Acceptance Test-Driven Development test scriptor allows the user to define in a managed matter ATDD test scenarios and convert it into a code structure to facilitate fast test code development. At this moment this conversion is only implemented for .al.
 
 The ATDD pattern is defined by so called tags:
 
@@ -21,7 +21,7 @@ Install-Module ATDD.TestScriptor
 Install-Module ATDD.TestScriptor -Scope CurrentUser 
 ```
 
-Note that you may be asked for confirmation if you didn't previously mark the PowerShell Gallery repository as a trusted module source.
+Note that you may be asked for confirmation if you haven't previously marked the PowerShell Gallery repository as a trusted PowerShell module source.
 
 ## Build/usage instructions (beta phase)
 
