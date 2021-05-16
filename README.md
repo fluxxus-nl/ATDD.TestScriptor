@@ -1,5 +1,5 @@
 ### Note 
-This PowerShell module is not really maintained as we are working on a VSCode etxension with the same name. You can find its itHub project [here](https://github.com/fluxxus-nl/ATDD.TestScriptor.VSCodeExtension). However, if the PowerShell module still makes sense to you - a thanx for using it - let us by creating an issue with your business case in it.
+This PowerShell module is not really maintained as we are working on a VSCode extension with the same name. You can find its itHub project [here](https://github.com/fluxxus-nl/ATDD.TestScriptor.VSCodeExtension). However, if the PowerShell module still makes sense to you - and thanx for using it - let know us by creating an issue with your business case in it.
 
 # ATDD.TestScriptor
 
