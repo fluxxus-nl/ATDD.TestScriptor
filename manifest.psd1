@@ -73,7 +73,7 @@
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport   = 'New-ATDDGiven', 'New-ATDDTestFeature', 'New-ATDDTestScenario', 'New-ATDDThen',
-    'New-ATDDWhen', 'ConvertTo-ALTestCodeunit', 'New-ATDDCleanup'
+    'New-ATDDWhen', 'ConvertTo-ALTestCodeunit', 'New-ATDDCleanup', 'Sync-ALTestCodeunit'
 
     # Variables to export from this module
     VariablesToExport = '*'
