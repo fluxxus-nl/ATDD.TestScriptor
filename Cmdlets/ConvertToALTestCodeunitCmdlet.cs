@@ -80,10 +80,8 @@ namespace ATDD.TestScriptor
                     writer.Indent++;
                     WriteBanner(writer);
                     writer.WriteLine("Access = Public;");
-                    writer.WriteLine();
                     writer.WriteLine("InherentEntitlements = X;");
                     writer.WriteLine("InherentPermissions = X;");
-                    writer.WriteLine();
                     writer.WriteLine("Subtype = Test;");
                     writer.WriteLine();
                     writer.WriteLine("trigger OnRun()");
