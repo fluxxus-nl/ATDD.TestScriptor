@@ -12,7 +12,7 @@
     RootModule        = 'ATDD.TestScriptor.dll'
 
     # Version number of this module.
-    ModuleVersion     = '0.1.2'
+    ModuleVersion     = '0.1.3'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -21,13 +21,13 @@
     GUID              = '7cef471c-3b16-4620-8b74-5a86c520d989'
 
     # Author of this module
-    Author            = 'Jan Hoek/Luc van Vugt'
+    Author            = 'Jan Hoek/Luc van Vugt/Peter Conijn'
 
     # Company or vendor of this module
     CompanyName       = 'fluxxus.nl'
 
     # Copyright statement for this module
-    Copyright         = 'Copyright (c) 2020 fluxxus.nl'
+    Copyright         = 'Copyright (c) 2024 fluxxus.nl'
 
     # Description of the functionality provided by this module
     Description       = 'Acceptance Test-Driven Development test scriptor'
